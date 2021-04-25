@@ -13,35 +13,45 @@
         <div>
             <x-label for="title" value="Title" />
 
-            <x-input id="title" class="block mt-1 w-full" type="text" name="title" required autofocus />
+            <x-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus />
+
+            <x-validation-error class="mb-4" :errors="$errors" title="title"/>            
         </div>
 
         <!-- Year -->
         <div>
             <x-label for="year" value="Year" />
 
-            <x-input id="year" class="block mt-1 w-full" type="number" name="year" required />
+            <x-input id="year" class="block mt-1 w-full" type="number" name="year" :value="old('year')" required />
+
+            <x-validation-error class="mb-4" :errors="$errors" title="year"/>            
         </div>
 
         <!-- Abstract -->
         <div>
             <x-label for="abstract" value="Abstract" />
 
-            <x-textarea id="abstract" class="block mt-1 w-full" type="text" name="abstract"  />
+            <x-textarea id="abstract" class="block mt-1 w-full" type="text" name="abstract" :value="old('abstract')" />
+
+            <x-validation-error class="mb-4" :errors="$errors" title="abstract"/>            
         </div>
 
         <!-- Author -->
         <div>
             <x-label for="author" value="Author" />
             
-            <x-multi-select id="author" class="block mt-1 w-full" name="author[]" :list='$list'/>
+            <x-multi-select id="author" class="block mt-1 w-full" name="author[]" :list='$list' :selected="old('author')"/>
+
+            <x-validation-error class="mb-4" :errors="$errors" title="author"/>            
         </div>
         
         <!-- Genre -->
         <div>
             <x-label for="genre" value="Genre" />
             
-            <x-select id="genre" class="block mt-1 w-full" name="genre" :list='$genres'/>
+            <x-select id="genre" class="block mt-1 w-full" name="genre" :list='$genres' :value="old('genre')"/>
+
+            <x-validation-error class="mb-4" :errors="$errors" title="genre"/>            
         </div>
         
         <div class="flex items-center justify-end mt-4">

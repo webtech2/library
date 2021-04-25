@@ -1,7 +1,11 @@
-@props(['list', 'id', 'disabled' => false])
+@props(['list', 'id', 'selected', 'disabled' => false])
 <select multiple id="{{ $id }}" {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => '']) !!}>
     @foreach ($list as $item) 
-       <option value='{{$item->value}}'>{{$item->name}}</option>
+        @if(collect($selected)->contains($item->value))
+        <option value='{{$item->value}}' selected>{{$item->name}}</option>
+        @else
+        <option value='{{$item->value}}'>{{$item->name}}</option>
+        @endif
     @endforeach
 </select>
 

@@ -36,6 +36,11 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = array(
+            'name' => 'required|string|min:2|max:50|unique:genres',
+        );        
+        $this->validate($request, $rules); 
+        
         $genre = new Genre();
         $genre->name = $request->name;
         $genre->save();        

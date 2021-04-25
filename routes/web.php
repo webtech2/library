@@ -20,6 +20,10 @@ Route::get('/', [BookController::class, 'index']);
 
 require __DIR__.'/auth.php';
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 Route::resource('genre', GenreController::class);
 Route::resource('author', AuthorController::class);
 Route::resource('book', BookController::class);

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use function view;
 
 class AuthorController extends Controller
 {
@@ -36,6 +38,21 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+        $last_name = $request->last_name;
+        $rules = array(
+            'first_name' => [
+                'required', 
+                'string', 
+                'min:2', 
+                'max:50',
+                Rule::unique('authors', 'first_name')->where(function ($query) use ($last_name) {
+                    return $query->where('last_name', $last_name);
+                })],
+            'last_name' => 'required|string|min:2|max:50',
+            'country' => 'nullable|string',
+        );        
+        $this->validate($request, $rules); 
+
         $author = new Author();
         $author->first_name = $request->first_name;
         $author->last_name = $request->last_name;

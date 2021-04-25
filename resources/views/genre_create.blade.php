@@ -13,7 +13,9 @@
         <div>
             <x-label for="name" value="Name" />
 
-            <x-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus />
+            <x-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus :value="old('name')"/>
+            
+            <x-validation-error class="mb-4" :errors="$errors" title="name"/>          
         </div>
 
         <div class="flex items-center justify-end mt-4">

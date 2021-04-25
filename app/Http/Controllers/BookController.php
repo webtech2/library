@@ -47,6 +47,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = array(
+            'title' => 'required|string|min:2|max:191',
+            'year' => 'required|digits:4|integer|max:'.(date('Y')),
+            'abstract' => 'nullable|string',
+            'genre' => 'required|exists:genres,id',
+            'author' => 'required|exists:authors,id',
+        );        
+        $this->validate($request, $rules); 
+        
         $book = new Book();
         $book->title = $request->title;
         $book->year = $request->year;
