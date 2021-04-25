@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -19,24 +21,43 @@ class BookController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new book.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $list = Author::all()->map(function ($author) {
+            $author->name = $author->first_name.' '.$author->last_name;
+            $author->value = $author->id;
+            return $author;
+	   });
+        $genres = Genre::all()->map(function ($genre) {
+            $genre->value = $genre->id;
+            return $genre;
+	   });
+        return view('book_create', compact('list','genres'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created book in the database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book();
+        $book->title = $request->title;
+        $book->year = $request->year;
+        $book->abstract = $request->abstract;
+        $book->genre()->associate(Genre::findOrFail($request->genre));
+        $book->save();
+        foreach($request->author as $id) {
+            $author = Author::findOrFail($id);
+            $book->authors()->attach($author);
+        }
+        return redirect()->route('book.index');        
     }
 
     /**

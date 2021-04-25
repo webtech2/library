@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                 <p class='font-semibold text-xl'>{{ $book->title }}</p>
-                <p class='text-lg'><strong class='font-semibold'>Genre:</strong> {{ $book->genre->name}}</p>
+                <p class='text-lg'><strong class='font-semibold'>Genre:</strong> <a href="{{ url('genre', $book->genre->id) }}">{{ $book->genre->name}}</a></p>
                 <p class='text-lg'><strong class='font-semibold'>Year:</strong> {{ $book->year }}</p>
                 @isset($book->abstract)
                 <p class='text-lg'><strong class='font-semibold'>Abstract:</strong> {{ $book->abstract }}</p>
@@ -21,7 +21,7 @@
                 <p class='text-lg'><strong class='font-semibold'>Author:</strong> 
                 @endif
                 @foreach ($book->authors as $author)
-                    {{ $author->first_name }} {{ $author->last_name }} @isset($author->country) ({{ $author->country }}) @endisset
+                    <a href="{{ url('author', $author->id) }}">{{ $author->first_name }} {{ $author->last_name }} @isset($author->country) ({{ $author->country }}) @endisset</a>
                 @endforeach
                 </p>
             </div>

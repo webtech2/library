@@ -26,6 +26,9 @@
                         <a href="{{ url('book', $book->id) }}">{{ $book->title }} {{ $book->year }}</a>
                     </p>
                 @endforeach
+                <x-nav-link :href="route('book.create')">
+                    Create new
+                </x-nav-link>
                 </div>
             </div>
         </div>

@@ -16,6 +16,9 @@
                         </a>
                     </p>
                 @endforeach
+                <x-nav-link :href="route('author.create')">
+                    Create new
+                </x-nav-link>
                 </div>
             </div>
         </div>

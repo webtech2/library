@@ -19,24 +19,29 @@ class AuthorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new author.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('author_create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created author in the database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $author = new Author();
+        $author->first_name = $request->first_name;
+        $author->last_name = $request->last_name;
+        $author->country = $request->country;
+        $author->save();        
+        return redirect()->route('author.index');
     }
 
     /**

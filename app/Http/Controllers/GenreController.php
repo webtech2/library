@@ -19,24 +19,27 @@ class GenreController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new genre.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('genre_create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created genre in the database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $genre = new Genre();
+        $genre->name = $request->name;
+        $genre->save();        
+        return redirect()->route('genre.index');
     }
 
     /**

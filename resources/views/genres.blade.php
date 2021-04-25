@@ -14,6 +14,9 @@
                         <a href="{{ url('genre', $genre['id']) }}">{{ $genre->name }}</a>
                     </p>
                 @endforeach
+                <x-nav-link :href="route('genre.create')">
+                    Create new
+                </x-nav-link>
                 </div>
             </div>
         </div>
