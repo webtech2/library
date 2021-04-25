@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', [BookController::class, 'index']);
 
 require __DIR__.'/auth.php';
+
+Route::resource('genre', GenreController::class);
+Route::resource('author', AuthorController::class);
+Route::resource('book', BookController::class);
