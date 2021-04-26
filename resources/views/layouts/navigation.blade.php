@@ -27,6 +27,12 @@
                     <x-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
                         {{ __('Reserved books') }}
                     </x-nav-link>
+                    <x-nav-link :href="url('borrowed/books')" :active="request()->routeIs('books.borrowed')">
+                        {{ __('Borrowed books') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('card')" :active="request()->routeIs('card.show')">
+                        {{ __('Reader card') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -78,11 +84,23 @@
             <x-responsive-nav-link :href="route('book.index')" :active="request()->routeIs('book.index') or request()->routeIs('genre.show') or request()->routeIs('author.show')">
                 {{ __('Books') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('books.filter')" :active="request()->routeIs('books.filter')">
+                {{ __('Filter books') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('genre.index')" :active="request()->routeIs('genre.index')">
                 {{ __('Genres') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('author.index')" :active="request()->routeIs('author.index')">
                 {{ __('Authors') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
+                {{ __('Reserved books') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('borrowed/books')" :active="request()->routeIs('books.borrowed')">
+                {{ __('Borrowed books') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('card')" :active="request()->routeIs('card.show')">
+                {{ __('Reader card') }}
             </x-responsive-nav-link>
         </div>
 
