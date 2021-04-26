@@ -9,6 +9,11 @@ use function view;
 
 class AuthorController extends Controller
 {
+    public function __construct() {
+        // only Admins have access to the following methods
+        $this->middleware('auth.admin')->only(['create', 'store']);
+    }
+    
     /**
      * Display a listing of the resource.
      *

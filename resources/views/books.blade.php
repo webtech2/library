@@ -26,9 +26,12 @@
                         <a href="{{ url('book', $book->id) }}">{{ $book->title }} {{ $book->year }}</a>
                     </p>
                 @endforeach
+                
+                @can('is-admin')
                 <x-nav-link :href="route('book.create')">
                     Create new
                 </x-nav-link>
+                @endcan
                 </div>
             </div>
         </div>

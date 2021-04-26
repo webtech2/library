@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+    public function __construct() {
+        // only Admins have access to the following methods
+        $this->middleware('auth.admin')->only(['create', 'store']);
+    }
+        
     /**
      * Display a listing of the resource.
      *

@@ -16,9 +16,13 @@
                         </a>
                     </p>
                 @endforeach
+                                
+                @can('is-admin')
                 <x-nav-link :href="route('author.create')">
                     Create new
                 </x-nav-link>
+                @endcan
+                
                 </div>
             </div>
         </div>

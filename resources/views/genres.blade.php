@@ -14,9 +14,13 @@
                         <a href="{{ url('genre', $genre['id']) }}">{{ $genre->name }}</a>
                     </p>
                 @endforeach
+                
+                @can('is-admin')
                 <x-nav-link :href="route('genre.create')">
                     Create new
                 </x-nav-link>
+                @endcan
+                
                 </div>
             </div>
         </div>
