@@ -13,7 +13,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-        @if(Route::is('book.create') )
+        @if(Route::is('book.create') or Route::is('books.filter'))
         <!--JQuery-->
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <!--Bootstrap-->

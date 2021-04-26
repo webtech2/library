@@ -40,7 +40,7 @@
         <div>
             <x-label for="author" value="Author" />
             
-            <x-multi-select id="author" class="block mt-1 w-full" name="author[]" :list='$list' :selected="old('author')"/>
+            <x-multi-select id="author" class="block mt-1 w-full" name="author[]" :list='$list' :selected="old('author')" text="Select authors"/>
 
             <x-validation-error class="mb-4" :errors="$errors" title="author"/>            
         </div>

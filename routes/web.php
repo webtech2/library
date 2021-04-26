@@ -29,3 +29,6 @@ Route::get('/dashboard', function () {
 Route::resource('genre', GenreController::class);
 Route::resource('author', AuthorController::class);
 Route::resource('book', BookController::class);
+
+Route::get('books/filter', [BookController::class, 'showFilter'])->name('books.filter');
+Route::post('books/filter', [BookController::class, 'filter']);

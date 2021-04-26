@@ -1,4 +1,4 @@
-@props(['list', 'id', 'selected', 'disabled' => false])
+@props(['list', 'id', 'selected', 'text', 'disabled' => false])
 <select multiple id="{{ $id }}" {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => '']) !!}>
     @foreach ($list as $item) 
         @if(collect($selected)->contains($item->value))
@@ -12,7 +12,7 @@
 <script>
     $(document).ready(function() {
         $('#{{ $id }}').multiselect({
-                    nonSelectedText:"Select authors",
+                    nonSelectedText:"{{ $text }}",
                 });
     });
 </script>

@@ -12,6 +12,8 @@ class BookController extends Controller
     public function __construct() {
         // only Admins have access to the following methods
         $this->middleware('auth.admin')->only(['create', 'store']);
+        // only authenticated users have access to the methods of the controller
+        $this->middleware('auth');
     }
         
     /**
@@ -118,5 +120,75 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function showFilter() 
+    {
+        $authors = Author::all()->map(function ($author) {
+            $author->name = $author->first_name.' '.$author->last_name;
+            $author->value = $author->id;
+            return $author;
+	   });        
+        $genres = Genre::all()->map(function ($genre) {
+            $genre->value = $genre->id;
+            return $genre;
+	   });
+        return view('books_filter', compact('authors','genres'));        
+    }
+    
+    public function filter(Request $request)
+    {
+        $rules;        
+        
+        if ($request->year_from != null) {
+            $year_from = $request->year_from;
+            $rules = array(
+                'title' => 'nullable|string|min:2|max:191',
+                'year_from' => 'nullable|digits:4|integer|max:'.(date('Y')),
+                'year_until' => 'nullable|digits:4|integer|max:'.date('Y').'|gte:'.$year_from,
+                'genre' => 'nullable|exists:genres,id',
+                'author' => 'nullable|exists:authors,id',
+            );   
+        }
+        else {
+            $rules = array(
+                'title' => 'nullable|string|min:2|max:191',
+                'year_from' => 'nullable|digits:4|integer|max:'.(date('Y')),
+                'year_until' => 'nullable|digits:4|integer|max:'.date('Y'),
+                'genre' => 'nullable|exists:genres,id',
+                'author' => 'nullable|exists:authors,id',
+            );   
+        }
+            
+        $this->validate($request, $rules); 
+
+        $query = Book::join('books_by_author', 'books_by_author.book_id', '=', 'books.id');
+        if ($request->genre != null) {
+            $query = $query->whereIn('books.genre_id',$request->genre);
+        } 
+
+        if ($request->author != null) {
+            $query = $query->whereIn('books_by_author.author_id',$request->author);
+        }
+
+        if ($request->title != null) {
+            $query = $query->where('books.title', 'LIKE', '%'.$request->title.'%');
+        }
+
+        if ($request->year_from != null) {
+            $query = $query->where('books.year', '>=', $request->year_from);
+        }
+
+        if ($request->year_until != null) {
+            $query = $query->where('books.year', '<=', $request->year_until);
+        }
+
+        if ($request->abstract != null) {
+            $query = $query->where('books.abstract', 'LIKE', '%'.$request->abstract.'%');
+        }
+        
+        $query = $query->select('books.*');
+
+        return view('books', array('books' => $query->orderBy('title')->get()));        
     }
 }
