@@ -24,7 +24,38 @@
                     <a href="{{ url('author', $author->id) }}">{{ $author->first_name }} {{ $author->last_name }} @isset($author->country) ({{ $author->country }}) @endisset</a>
                 @endforeach
                 </p>
+                
+                <x-button id="btn-reserve" book-id="{{ $book->id }}">
+                    @if ($reserved == 0)
+                    Reserve
+                    @else
+                    Unreserve
+                    @endif
+                </x-button>
             </div>
         </div>
     </div>
+        
+    <script>
+$(document).ready(function () {
+    $("#btn-reserve").on('click', function (e) {
+        var url = "{{ route('books.reserve') }}";
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { id: $(e.target).attr('book-id'), _token: CSRF_TOKEN },
+            success: function (data) {
+                if ($("#btn-reserve").text().trim() == "Reserve")
+                    $("#btn-reserve").text("Unreserve");
+                else
+                    $("#btn-reserve").text("Reserve");
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    })
+});        
+    </script>        
 </x-app-layout>

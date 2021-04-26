@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -85,7 +86,11 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::findOrFail($id);
-        return view('book', compact('book'));
+        $reserved = 0;
+        if (session()->has('books') && in_array($id, session()->get('books'))) {
+            $reserved = 1;
+        }
+        return view('book', compact('book','reserved'));
     }
 
     /**
@@ -187,7 +192,7 @@ class BookController extends Controller
             $query = $query->where('books.abstract', 'LIKE', '%'.$request->abstract.'%');
         }
         
-        $query = $query->select('books.*');
+        $query = $query->select(DB::raw('distinct books.*'));
 
         return view('books', array('books' => $query->orderBy('title')->get()));        
     }

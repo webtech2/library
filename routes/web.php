@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,6 @@ Route::resource('book', BookController::class);
 
 Route::get('books/filter', [BookController::class, 'showFilter'])->name('books.filter');
 Route::post('books/filter', [BookController::class, 'filter']);
+
+Route::post('books/reserve', [CartController::class, 'addOrRemoveFromCart'])->name('books.reserve');
+Route::get('books/reserve', [CartController::class, 'showCart'])->name('cart.show');
