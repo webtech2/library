@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create a new author
+            {{ __('messages.Create a new author') }}
         </h2>
     </x-slot>
     
@@ -11,7 +11,7 @@
 
         <!-- First Name -->
         <div>
-            <x-label for="first_name" value="First name" />
+            <x-label for="first_name" value="{{ __('messages.First name') }}" />
 
             <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" required autofocus :value="old('first_name')"/>
             
@@ -20,7 +20,7 @@
 
         <!-- Last Name -->
         <div>
-            <x-label for="last_name" value="Last name" />
+            <x-label for="last_name" value="{{ __('messages.Last name') }}" />
 
             <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" required :value="old('last_name')"/>
 
@@ -29,7 +29,7 @@
 
         <!-- Country -->
         <div>
-            <x-label for="country" value="Country" />
+            <x-label for="country" value="{{ __('messages.Country') }}" />
 
             <x-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')"/>
 
@@ -38,7 +38,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-button class="ml-4">
-                Create
+                {{ __('messages.Create') }}
             </x-button>
         </div>
     </form>

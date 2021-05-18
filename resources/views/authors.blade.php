@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Authors') }}
+            {{ __('messages.Authors') }}
         </h2>
     </x-slot>
 
@@ -19,7 +19,7 @@
                                 
                 @can('is-admin')
                 <x-nav-link :href="route('author.create')">
-                    Create new
+                    {{ __('messages.Create new') }}
                 </x-nav-link>
                 @endcan
                 

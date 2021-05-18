@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +37,5 @@ Route::post('books/filter', [BookController::class, 'filter']);
 
 Route::post('books/reserve', [CartController::class, 'addOrRemoveFromCart'])->name('books.reserve');
 Route::get('books/reserve', [CartController::class, 'showCart'])->name('cart.show');
+
+Route::get('lang/{locale}',LanguageController::class);

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create a new genre
+            {{ __('messages.Create a new genre') }}
         </h2>
     </x-slot>
     
@@ -11,7 +11,7 @@
 
         <!-- Name -->
         <div>
-            <x-label for="name" value="Name" />
+            <x-label for="name" value="{{ __('messages.Name') }}" />
 
             <x-input id="name" class="block mt-1 w-full" type="text" name="name" required autofocus :value="old('name')"/>
             
@@ -20,7 +20,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-button class="ml-4">
-                Create
+                {{ __('messages.Create') }}
             </x-button>
         </div>
     </form>

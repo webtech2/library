@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Cart
+            {{ __('messages.Cart') }}
         </h2>
     </x-slot>
 
@@ -14,7 +14,7 @@
                     <p class='text-lg' book-id="{{$book->id}}">
                         <a href="{{ url('book', $book->id) }}">{{ $book->title }} {{ $book->year }}</a>
                 <x-button class="btn-reserve" book-id="{{ $book->id }}">
-                    Unreserve
+                    {{ __('messages.Unreserve') }}
                 </x-button>                        
                     </p>
                 @endforeach
@@ -29,7 +29,7 @@ $(document).ready(function () {
     
     function checkBookCount() {
         if (!$('p[book-id]').length) {
-            $('#booklist').text('There are no books reserved!');
+            $('#booklist').text("{{ __('messages.There are no books reserved') }}");
         }
     }
     

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Genres') }}
+            {{ __('messages.Genres') }}
         </h2>
     </x-slot>
 
@@ -17,7 +17,7 @@
                 
                 @can('is-admin')
                 <x-nav-link :href="route('genre.create')">
-                    Create new
+                    {{ __('messages.Create new') }}
                 </x-nav-link>
                 @endcan
                 

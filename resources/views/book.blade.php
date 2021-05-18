@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Book info') }}
+            {{ __('messages.Book info') }}
         </h2>
     </x-slot>
 
@@ -10,15 +10,15 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                 <p class='font-semibold text-xl'>{{ $book->title }}</p>
-                <p class='text-lg'><strong class='font-semibold'>Genre:</strong> <a href="{{ url('genre', $book->genre->id) }}">{{ $book->genre->name}}</a></p>
-                <p class='text-lg'><strong class='font-semibold'>Year:</strong> {{ $book->year }}</p>
+                <p class='text-lg'><strong class='font-semibold'>{{ __('messages.Genre') }}:</strong> <a href="{{ url('genre', $book->genre->id) }}">{{ $book->genre->name}}</a></p>
+                <p class='text-lg'><strong class='font-semibold'>{{ __('messages.Year') }}:</strong> {{ $book->year }}</p>
                 @isset($book->abstract)
-                <p class='text-lg'><strong class='font-semibold'>Abstract:</strong> {{ $book->abstract }}</p>
+                <p class='text-lg'><strong class='font-semibold'>{{ __('messages.Abstract') }}:</strong> {{ $book->abstract }}</p>
                 @endisset
                 @if (count($book->authors) > 1)
-                <p class='text-lg'><strong class='font-semibold'>Authors:</strong> 
+                <p class='text-lg'><strong class='font-semibold'>{{ __('messages.Authors') }}:</strong> 
                 @else    
-                <p class='text-lg'><strong class='font-semibold'>Author:</strong> 
+                <p class='text-lg'><strong class='font-semibold'>{{ __('messages.Author') }}:</strong> 
                 @endif
                 @foreach ($book->authors as $author)
                     <a href="{{ url('author', $author->id) }}">{{ $author->first_name }} {{ $author->last_name }} @isset($author->country) ({{ $author->country }}) @endisset</a>
@@ -27,9 +27,9 @@
                 
                 <x-button id="btn-reserve" book-id="{{ $book->id }}">
                     @if ($reserved == 0)
-                    Reserve
+                    {{ __('messages.Reserve') }}
                     @else
-                    Unreserve
+                    {{ __('messages.Unreserve') }}
                     @endif
                 </x-button>
             </div>
@@ -46,10 +46,10 @@ $(document).ready(function () {
             url: url,
             data: { id: $(e.target).attr('book-id'), _token: CSRF_TOKEN },
             success: function (data) {
-                if ($("#btn-reserve").text().trim() == "Reserve")
-                    $("#btn-reserve").text("Unreserve");
+                if ($("#btn-reserve").text().trim() == "{{ __('messages.Reserve') }}")
+                    $("#btn-reserve").text("{{ __('messages.Unreserve') }}");
                 else
-                    $("#btn-reserve").text("Reserve");
+                    $("#btn-reserve").text("{{ __('messages.Reserve') }}");
             },
             error: function (data) {
                 console.log('Error:', data);

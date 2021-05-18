@@ -13,26 +13,32 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index') or request()->routeIs('genre.show') or request()->routeIs('author.show')">
-                        {{ __('Books') }}
+                        {{ __('messages.Books') }}
                     </x-nav-link>
                     <x-nav-link :href="route('books.filter')" :active="request()->routeIs('books.filter')">
-                        {{ __('Filter books') }}
+                        {{ __('messages.Filter books') }}
                     </x-nav-link>
                     <x-nav-link :href="route('genre.index')" :active="request()->routeIs('genre.index')">
-                        {{ __('Genres') }}
+                        {{ __('messages.Genres') }}
                     </x-nav-link>
                     <x-nav-link :href="route('author.index')" :active="request()->routeIs('author.index')">
-                        {{ __('Authors') }}
+                        {{ __('messages.Authors') }}
                     </x-nav-link>
                     <x-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
-                        {{ __('Reserved books') }}
+                        {{ __('messages.Reserved books') }}
                     </x-nav-link>
                     <x-nav-link :href="url('borrowed/books')" :active="request()->routeIs('books.borrowed')">
-                        {{ __('Borrowed books') }}
+                        {{ __('messages.Borrowed books') }}
                     </x-nav-link>
                     <x-nav-link :href="url('card')" :active="request()->routeIs('card.show')">
-                        {{ __('Reader card') }}
+                        {{ __('messages.Reader card') }}
                     </x-nav-link>
+                    <x-nav-link :href="url('lang/lv')">
+                        LV
+                    </x-nav-link>
+                    <x-nav-link :href="url('lang/en')">
+                        EN
+                    </x-nav-link>                    
                 </div>
             </div>
 
@@ -59,7 +65,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log out') }}
+                                {{ __('messages.Log out') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -82,25 +88,31 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('book.index')" :active="request()->routeIs('book.index') or request()->routeIs('genre.show') or request()->routeIs('author.show')">
-                {{ __('Books') }}
+                {{ __('messages.Books') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('books.filter')" :active="request()->routeIs('books.filter')">
-                {{ __('Filter books') }}
+                {{ __('messages.Filter books') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('genre.index')" :active="request()->routeIs('genre.index')">
-                {{ __('Genres') }}
+                {{ __('messages.Genres') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('author.index')" :active="request()->routeIs('author.index')">
-                {{ __('Authors') }}
+                {{ __('messages.Authors') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
-                {{ __('Reserved books') }}
+                {{ __('messages.Reserved books') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="url('borrowed/books')" :active="request()->routeIs('books.borrowed')">
-                {{ __('Borrowed books') }}
+                {{ __('messages.Borrowed books') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="url('card')" :active="request()->routeIs('card.show')">
-                {{ __('Reader card') }}
+                {{ __('messages.Reader card') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('lang/lv')">
+                LV
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('lang/en')">
+                EN
             </x-responsive-nav-link>
         </div>
 
@@ -127,7 +139,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log out') }}
+                        {{ __('messages.Log out') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
