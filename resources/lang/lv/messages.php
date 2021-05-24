@@ -2,6 +2,8 @@
 return [
     'Books' => 'Grāmatas',
     'Filter books' => 'Filtrēt grāmatas',
+    'Search books' => 'Meklēt grāmatas',
+    'Search' => 'Meklēšana',
     'Genres' => 'Žanri',
     'Authors' => 'Autori',
     'Reserved books' => 'Rezervētās grāmatas',

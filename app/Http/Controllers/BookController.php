@@ -196,4 +196,17 @@ class BookController extends Controller
 
         return view('books', array('books' => $query->orderBy('title')->get()));        
     }
+    
+    // AJAX view
+    public function showSearch() 
+    {
+        return view('search');
+    }
+    
+    // AJAX search
+    public function search(Request $request) 
+    {
+        return Book::where('title', 'LIKE', '%'.$request->get('search').'%')
+                ->orWhere('abstract', 'LIKE', '%'.$request->get('search').'%')->get();
+    } 
 }

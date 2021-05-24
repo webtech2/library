@@ -39,3 +39,6 @@ Route::post('books/reserve', [CartController::class, 'addOrRemoveFromCart'])->na
 Route::get('books/reserve', [CartController::class, 'showCart'])->name('cart.show');
 
 Route::get('lang/{locale}',LanguageController::class);
+
+Route::get('books/search',[BookController::class, 'showSearch'])->name('books.search');
+Route::post('books/search',[BookController::class, 'search']); 

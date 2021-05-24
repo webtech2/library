@@ -2,6 +2,8 @@
 return [
     'Books' => 'Books',
     'Filter books' => 'Filter books',
+    'Search books' => 'Search books',
+    'Search' => 'Search',
     'Genres' => 'Genres',
     'Authors' => 'Authors',
     'Reserved books' => 'Reserved books',

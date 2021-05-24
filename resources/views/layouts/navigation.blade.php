@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('books.filter')" :active="request()->routeIs('books.filter')">
                         {{ __('messages.Filter books') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('books.search')" :active="request()->routeIs('books.search')">
+                        {{ __('messages.Search books') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('genre.index')" :active="request()->routeIs('genre.index')">
                         {{ __('messages.Genres') }}
                     </x-nav-link>
@@ -92,6 +95,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('books.filter')" :active="request()->routeIs('books.filter')">
                 {{ __('messages.Filter books') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('books.search')" :active="request()->routeIs('books.search')">
+                {{ __('messages.Search books') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('genre.index')" :active="request()->routeIs('genre.index')">
                 {{ __('messages.Genres') }}

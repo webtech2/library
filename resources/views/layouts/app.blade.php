@@ -24,7 +24,7 @@
         <script src="{{ asset('js/bootstrap-multiselect.js') }} "></script>        
         @endif
 
-        @if(Route::is('book.show') or Route::is('cart.show'))
+        @if(Route::is('book.show') or Route::is('cart.show') or Route::is('books.search'))
         <!--JQuery-->
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         @endif
